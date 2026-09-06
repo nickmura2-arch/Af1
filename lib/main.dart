@@ -1,4 +1,4 @@
-// Exercício 1:
+// Exercício 1: Abstracao e Classes de Apoio
 
 class Passageiro {
   String? nome;
@@ -35,7 +35,7 @@ class Atendente {
   });
 }
 
-// Exercício 9: Mixins[cite: 1]
+// Exercício 9: Mixins
 
 mixin Logger {
   void log(String mensagem) {
@@ -49,20 +49,20 @@ mixin Auditoria {
   }
 }
 
-// Exercícios 2, 3, 4, 5, 6 e 7: Classe Passagem[cite: 1]
+// Exercícios 2, 3, 4, 5, 6 e 7: Classe Passagem
 
 class Passagem {
-  // Exercício 2 & 5: Encapsulamento de Atributos Críticos[cite: 1]
+  // Exercício 2 & 5: Encapsulamento de Atributos Críticos
   String? _codigoLocalizador = "";
   Passageiro? passageiro;
   PlataformaVenda? plataforma;
   Atendente? atendente;
   String? observacoes;
 
-  // Exercício 2: Construtor Não Nomeado[cite: 1]
+  // Exercício 2: Construtor Não Nomeado
   Passagem();
 
-  // Exercício 3: Construtores Nomeados[cite: 1]
+  // Exercício 3: Construtores Nomeados
   Passagem.somenteCodigo(String codigoLocalizador) {
     this._codigoLocalizador = codigoLocalizador;
   }
@@ -77,7 +77,7 @@ class Passagem {
     this._codigoLocalizador = codigoLocalizador;
   }
 
-  // Exercício 4: Parâmetros Nomeados e Clareza de Inicialização[cite: 1]
+  // Exercício 4: Parâmetros Nomeados e Clareza de Inicialização
   Passagem.codigoEPassageiro({String? codigoLocalizador, this.passageiro}) {
     this._codigoLocalizador = codigoLocalizador ?? "";
   }
@@ -96,7 +96,7 @@ class Passagem {
     this.observacoes = observacoes;
   }
 
-  // Exercício 5: Métodos Tradicionais de Getter e Setter[cite: 1]
+  // Exercício 5: Métodos Tradicionais de Getter e Setter
   String? getCodigoLocalizador() {
     return _codigoLocalizador;
   }
@@ -109,7 +109,7 @@ class Passagem {
     _codigoLocalizador = codigoLocalizador;
   }
 
-  // Exercício 6: Getters e Setters nativos do Dart[cite: 1]
+  // Exercício 6: Getters e Setters nativos do Dart
   String? get codigoLocalizador => _codigoLocalizador;
 
   set codigoLocalizador(String? codigoLocalizador) {
@@ -120,7 +120,7 @@ class Passagem {
     _codigoLocalizador = codigoLocalizador;
   }
 
-  // Exercício 7: Comportamentos e Métodos de Negócio[cite: 1]
+  // Exercício 7: Comportamentos e Métodos de Negócio
   void emitirPassagem() {
     print("Passagem emitida com sucesso!");
   }
@@ -140,14 +140,12 @@ class Passagem {
   }
 }
 
-// ==========================================
-// Exercício 8, 9 e 10: Herança, Mixins e Polimorfismo[cite: 1]
-// ==========================================
+// Exercício 8, 9 e 10: Herança, Mixins e Polimorfismo
 
 class PassagemPrimeiraClasse extends Passagem with Logger, Auditoria {
   String? loungeAcesso;
 
-  // Exercício 8: Construtor especializado chamando a superclasse[cite: 1]
+  // Exercício 8: Construtor especializado chamando a superclasse
   PassagemPrimeiraClasse(
     String codigoLocalizador,
     Passageiro passageiro,
@@ -163,21 +161,19 @@ class PassagemPrimeiraClasse extends Passagem with Logger, Auditoria {
          observacoes: observacoes,
        );
 
-  // Exercício 10: Sobrescrita Polimórfica[cite: 1]
+  // Exercício 10: Sobrescrita Polimórfica
   @override
   void atualizarPassagem() {
     print("Passagem de Primeira Classe atualizada com sucesso!");
     
-    // Chamadas aos métodos recebidos dos mixins[cite: 1]
+    // Chamadas aos métodos recebidos dos mixins
     String nomeAtendente = atendente?.nome ?? "Atendente Não Informado";
     log("Alteração realizada pelo atendente: $nomeAtendente");
     auditar("Verificação de segurança realizada para a Primeira Classe.");
   }
 }
 
-// ==========================================
-// Exercício 10: Função Main (Execução Geral)[cite: 1]
-// ==========================================
+// Exercício 10: Função Main (Execução Geral)
 
 void main() {
   print("=== SISTEMA DE EMISSÃO DE PASSAGENS SKYHORIZON ===\n");
@@ -205,18 +201,18 @@ void main() {
     salario: 4500.0,
   );
 
-  // 1. Passagem Padrão (Construtor Não Nomeado / Instanciação Básica)[cite: 1]
+  // 1. Passagem Padrão (Construtor Não Nomeado / Instanciação Básica)
   print("--- 1. Teste Passagem Padrão ---");
   var passagemSimples = Passagem();
-  passagemSimples.codigoLocalizador = "SKY123"; // Testando setter nativo[cite: 1]
+  passagemSimples.codigoLocalizador = "SKY123"; // Testando setter nativo
   print("Código Localizador: ${passagemSimples.codigoLocalizador}");
-  passagemSimples.emitirPassagem(); // Testando método de negócio[cite: 1]
+  passagemSimples.emitirPassagem(); // Testando método de negócio
 
   // Teste de Validação do Setter (Valor Inválido)[cite: 1]
   print("\n--- Teste de Validação de Encapsulamento ---");
-  passagemSimples.codigoLocalizador = ""; // Deve disparar mensagem de erro[cite: 1]
+  passagemSimples.codigoLocalizador = ""; // Deve disparar mensagem de erro
 
-  // 2. Passagem utilizando o Construtor .all com Parâmetros Nomeados[cite: 1]
+  // 2. Passagem utilizando o Construtor .all com Parâmetros Nomeados
   print("\n--- 2. Teste Passagem.all ---");
   var passagemCompleta = Passagem.all(
     "SKY999",
@@ -228,7 +224,7 @@ void main() {
   print("Passagem criada para: ${passagemCompleta.passageiro?.nome}");
   passagemCompleta.atualizarPassagem();
 
-  // 3. Passagem de Primeira Classe (Especialização, Mixins e Polimorfismo)[cite: 1]
+  // 3. Passagem de Primeira Classe (Especialização, Mixins e Polimorfismo)
   print("\n--- 3. Teste Passagem Primeira Classe (VIP) ---");
   var passagemVip = PassagemPrimeiraClasse(
     "VIP777",
@@ -241,7 +237,7 @@ void main() {
 
   print("Lounge de Acesso: ${passagemVip.loungeAcesso}");
   
-  // Executando o método sobrescrito com chamadas de Log e Auditoria[cite: 1]
+  // Executando o método sobrescrito com chamadas de Log e Auditoria
   passagemVip.atualizarPassagem();
   
   print("\n=== OPERAÇÃO CONCLUÍDA COM SUCESSO ===");
